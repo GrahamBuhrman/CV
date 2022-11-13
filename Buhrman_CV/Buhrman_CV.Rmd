@@ -1,0 +1,183 @@
+---
+title: CV
+name: Graham
+surname: Buhrman
+position: "Doctoral Student"
+address: "Educational Sciences 1025 W Johnson Street"
+phone: +1 919 452 2190
+email: "gwbuhrman@gmail.com"
+twitter: GrahamBuhrman
+github: GrahamBuhrman
+linkedin: graham-buhrman
+headcolor: "414141"
+date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::awesomecv:
+    page_total: true
+    show_footer: true
+    keep_tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(vitae)
+library(tibble)
+library(googlesheets4)
+library(dplyr)
+library(tidyverse)
+library(stringr)
+
+#gs4_auth(email = "gwbuhrman@gmail.com")
+
+```
+
+# Education
+
+```{r education}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Education") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Degree,
+                          when = Dates,
+                          where = Location,
+                          with = University,
+                          why = Details)
+
+```
+
+# Employment
+
+```{r employment}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Professional Experience") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Title,
+                          when = Dates,
+                          where = Location,
+                          with = Institution,
+                          why = Details)
+
+```
+
+# Research
+
+```{r research}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Research Experience") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Lab,
+                          when = Dates,
+                          where = Location,
+                          with = Institution,
+                          why = Details)
+
+```
+
+# Published Articles
+
+```{r published_articles}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=255827046", 
+                          sheet = "Publications") %>%
+  filter(category == "peer-published") %>%
+  select(-category) %>%
+  RefManageR::as.BibEntry() %>%
+  RefManageR::WriteBib("published_articles.bib", biblatex = T)
+
+vitae::bibliography_entries("published_articles.bib") %>%
+  arrange(desc(issued))
+
+```
+
+# Manuscripts Under Review
+
+```{r under_review}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=255827046", 
+                          sheet = "Publications") %>%
+  filter(category == "under-review") %>%
+  select(-category) %>%
+  RefManageR::as.BibEntry() %>%
+  RefManageR::WriteBib("under_review.bib", biblatex = T)
+
+vitae::bibliography_entries("under_review.bib") %>%
+  arrange(desc(issued))
+
+```
+
+\newpage
+
+# Presentations and Posters
+
+```{r presentations}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Presentations") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Title,
+                          when = Dates,
+                          where = Location,
+                          with = Conference,
+                          why = Details)
+
+```
+
+# Awards and Achievements
+
+## Grants
+
+```{r grants}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Grants") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Grant,
+                          when = Year,
+                          with = From,
+                          why = Details)
+
+```
+
+## Awards
+
+```{r awards}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Awards") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Award,
+                          when = Year,
+                          with = From,
+                          why = Details)
+
+```
+
+## Scholarships
+
+```{r scholarships}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+                          sheet = "Scholarships") %>%
+  #mutate(Details = strsplit(x = Details, split = ",")) %>%
+  vitae::detailed_entries(what = Scholarship,
+                          when = Year,
+                          with = From,
+                          why = Details)
+
+```
+
+# Relevant Skills
+
+\begin{cvskills}
+  \cvskill
+    {Programming:}
+    {Python, R, SAS, HTML/CSS}
+  \cvskill
+    {Data Analysis:}
+    {Processing/Cleaning, Visualization, Modelling, Inference, Communication}
+  \end{cvskills}
+  
