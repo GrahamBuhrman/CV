@@ -9,13 +9,14 @@ email: "gwbuhrman@gmail.com"
 twitter: GrahamBuhrman
 github: GrahamBuhrman
 linkedin: graham-buhrman
+orcid: 0000-0003-4125-7171
 headcolor: "414141"
+docname: "Curriculum Vitae"
 date: "`r format(Sys.time(), '%B %Y')`"
 output: 
   vitae::awesomecv:
     page_total: true
     show_footer: true
-    keep_tex: true
 ---
 
 ```{r setup, include=FALSE}
@@ -28,9 +29,13 @@ library(dplyr)
 library(tidyverse)
 library(stringr)
 
-#gs4_auth(email = "gwbuhrman@gmail.com")
+gs4_auth(email = "gwbuhrman@gmail.com")
 
 ```
+
+# Research Interests
+
+As a doctoral student, I am interested in further honing my research interests. Currently, I am curious about the applications of natural language processing to causal inference in the social and behavioral sciences, and in the impacts of missing data on estimation of causal effects from observational data. 
 
 # Education
 
@@ -38,7 +43,6 @@ library(stringr)
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Education") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Degree,
                           when = Dates,
                           where = Location,
@@ -47,13 +51,12 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```
 
-# Employment
+# Professional Experience
 
-```{r employment}
+```{r professional}
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Professional Experience") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Title,
                           when = Dates,
                           where = Location,
@@ -62,13 +65,12 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```
 
-# Research
+# Research Experience
 
 ```{r research}
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Research Experience") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Lab,
                           when = Dates,
                           where = Location,
@@ -109,15 +111,12 @@ vitae::bibliography_entries("under_review.bib") %>%
 
 ```
 
-\newpage
-
 # Presentations and Posters
 
 ```{r presentations}
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Presentations") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Title,
                           when = Dates,
                           where = Location,
@@ -134,7 +133,6 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Grants") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Grant,
                           when = Year,
                           with = From,
@@ -148,7 +146,6 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Awards") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Award,
                           when = Year,
                           with = From,
@@ -162,7 +159,6 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Scholarships") %>%
-  #mutate(Details = strsplit(x = Details, split = ",")) %>%
   vitae::detailed_entries(what = Scholarship,
                           when = Year,
                           with = From,
