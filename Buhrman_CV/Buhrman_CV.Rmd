@@ -79,44 +79,30 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```
 
-# Published Articles
+# Manuscripts
 
-```{r published_articles}
+```{r manuscripts}
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=255827046", 
                           sheet = "Publications") %>%
-  filter(category == "peer-published") %>%
+  filter(category == "manuscript") %>%
   select(-category) %>%
   RefManageR::as.BibEntry() %>%
-  RefManageR::WriteBib("published_articles.bib", biblatex = T)
+  RefManageR::WriteBib("manuscripts.bib", biblatex = T)
 
-vitae::bibliography_entries("published_articles.bib") %>%
+vitae::bibliography_entries("manuscripts.bib") %>%
   arrange(desc(issued))
 
 ```
 
-# Manuscripts Under Review
+# Poster Presentations
 
-```{r under_review}
-
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=255827046", 
-                          sheet = "Publications") %>%
-  filter(category == "under-review") %>%
-  select(-category) %>%
-  RefManageR::as.BibEntry() %>%
-  RefManageR::WriteBib("under_review.bib", biblatex = T)
-
-vitae::bibliography_entries("under_review.bib") %>%
-  arrange(desc(issued))
-
-```
-
-# Presentations and Posters
-
-```{r presentations}
+```{r poster_presentations}
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
                           sheet = "Presentations") %>%
+  filter(Type == "poster") %>%
+  select(-Type) %>%
   vitae::detailed_entries(what = Title,
                           when = Dates,
                           where = Location,
@@ -127,39 +113,11 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 # Awards and Achievements
 
-## Grants
-
-```{r grants}
+```{r awards_achievements}
 
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
-                          sheet = "Grants") %>%
-  vitae::detailed_entries(what = Grant,
-                          when = Year,
-                          with = From,
-                          why = Details)
-
-```
-
-## Awards
-
-```{r awards}
-
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
-                          sheet = "Awards") %>%
+                          sheet = "Awards and Achievements") %>%
   vitae::detailed_entries(what = Award,
-                          when = Year,
-                          with = From,
-                          why = Details)
-
-```
-
-## Scholarships
-
-```{r scholarships}
-
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
-                          sheet = "Scholarships") %>%
-  vitae::detailed_entries(what = Scholarship,
                           when = Year,
                           with = From,
                           why = Details)
