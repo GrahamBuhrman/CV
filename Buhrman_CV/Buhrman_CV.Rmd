@@ -29,8 +29,6 @@ library(dplyr)
 library(tidyverse)
 library(stringr)
 
-gs4_auth(email = "gwbuhrman@gmail.com")
-
 ```
 
 # Research Interests
