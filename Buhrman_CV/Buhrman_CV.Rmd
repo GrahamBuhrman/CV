@@ -33,13 +33,13 @@ library(stringr)
 
 # Research Interests
 
-As a doctoral student, I am interested in further honing my research interests. Currently, I am curious about the applications of natural language processing to causal inference in the social and behavioral sciences, and in the impacts of missing data on estimation of causal effects from observational data. 
+As a doctoral student, I am interested in further developing my research interests and honing my data analysis skills. Currently, I am curious about the applications of machine learning to causal inference in the social and behavioral sciences, and in the impacts of missing data on estimation of causal effects from observational data. 
 
 # Education
 
 ```{r education}
 
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link",
                           sheet = "Education") %>%
   vitae::detailed_entries(what = Degree,
                           when = Dates,
@@ -53,7 +53,7 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```{r professional}
 
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link",
                           sheet = "Professional Experience") %>%
   vitae::detailed_entries(what = Title,
                           when = Dates,
@@ -67,7 +67,7 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```{r research}
 
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link",
                           sheet = "Research Experience") %>%
   vitae::detailed_entries(what = Lab,
                           when = Dates,
@@ -81,7 +81,7 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```{r manuscripts}
 
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=255827046", 
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link", 
                           sheet = "Publications") %>%
   filter(category == "manuscript") %>%
   select(-category) %>%
@@ -97,7 +97,7 @@ vitae::bibliography_entries("manuscripts.bib") %>%
 
 ```{r poster_presentations}
 
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link",
                           sheet = "Presentations") %>%
   filter(Type == "poster") %>%
   select(-Type) %>%
@@ -113,7 +113,7 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 ```{r awards_achievements}
 
-googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit#gid=0",
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link",
                           sheet = "Awards and Achievements") %>%
   vitae::detailed_entries(what = Award,
                           when = Year,
