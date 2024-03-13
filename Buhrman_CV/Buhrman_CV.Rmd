@@ -3,10 +3,9 @@ title: CV
 name: Graham
 surname: Buhrman
 position: "Doctoral Student"
-address: "Educational Sciences 1025 W Johnson Street"
+address: "Educational Sciences 1025 W Johnson Street, Madison, WI 53706"
 phone: +1 919 452 2190
 email: "gwbuhrman@gmail.com"
-twitter: GrahamBuhrman
 github: GrahamBuhrman
 linkedin: graham-buhrman
 orcid: 0000-0003-4125-7171
@@ -33,7 +32,7 @@ library(stringr)
 
 # Research Interests
 
-As a doctoral student, I am interested in further developing my research interests and honing my data analysis skills. Currently, I am curious about the applications of machine learning to causal inference in the social and behavioral sciences, and in the impacts of missing data on estimation of causal effects from observational data. 
+As a doctoral student, I am interested in further developing my research interests and honing my data analysis skills. Currently, I am curious about the applications of nonparametric regression methods to causal inference in the social and behavioral sciences, and in the estimation of causal effects from clustered observational data. 
 
 # Education
 
@@ -79,17 +78,33 @@ googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1J
 
 # Manuscripts
 
-```{r manuscripts}
+## Publications
 
+```{r publications}
 googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link", 
                           sheet = "Publications") %>%
-  filter(category == "manuscript") %>%
-  select(-category) %>%
+  filter(category == "published") %>%
   RefManageR::as.BibEntry() %>%
   RefManageR::WriteBib("manuscripts.bib", biblatex = T)
 
 vitae::bibliography_entries("manuscripts.bib") %>%
   arrange(desc(issued))
+
+```
+
+\
+
+## Forthcoming
+
+```{r forthcoming}
+
+googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/11AWQDqQletA1Jd9_lJfK1HkLcubAWxugTRLaQohbL80/edit?usp=share_link", 
+                          sheet = "Publications") %>%
+  filter(category == "in press") %>%
+  RefManageR::as.BibEntry() %>%
+  RefManageR::WriteBib("manuscripts.bib", biblatex = T)
+
+vitae::bibliography_entries("manuscripts.bib")
 
 ```
 
